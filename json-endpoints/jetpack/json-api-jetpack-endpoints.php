@@ -509,6 +509,26 @@ new Jetpack_JSON_API_Check_Capabilities_Endpoint( array(
 	'example_request' => 'https://public-api.wordpress.com/rest/v1/sites/example.wordpress.org/me/capability'
 ) );
 
+require_once( $json_jetpack_endpoints_dir . 'class.jetpack-json-sync-options-endpoint.php' );
+
+new Jetpack_JSON_API_Sync_Options_Endpoint( array(
+	'description'     => 'Synchronise Options with WordPress.com',
+	'method'          => 'POST',
+	'path'            => '/sites/%s/jetpack/sync/options',
+	'stat'            => 'jetpack:sync:options',
+	'path_labels' => array(
+		'$site' => '(int|string) The site ID, The site domain'
+	),
+	'response_format' => array(
+		'success' => '(bool) True if the operation succeed',
+	),
+	'example_request_data' => array(
+		'headers' => array(
+			'authorization' => 'Bearer YOUR_API_TOKEN'
+		),
+	),
+	'example_request' => 'https://public-api.wordpress.com/rest/v1/sites/example.wordpress.org/jetpack/sync/options'
+) );
 
 // CORE
 require_once( $json_jetpack_endpoints_dir . 'class.jetpack-json-api-core-endpoint.php' );
@@ -582,4 +602,3 @@ new Jetpack_JSON_API_Core_Endpoint( array(
 	),
 	'example_request' => 'https://public-api.wordpress.com/rest/v1/sites/example.wordpress.org/core'
 ) );
-
